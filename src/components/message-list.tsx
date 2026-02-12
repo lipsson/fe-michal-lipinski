@@ -1,15 +1,14 @@
-import { useEffect, useRef } from "react";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import {Box, CircularProgress, Typography} from "@mui/material";
+import {useEffect, useRef} from "react";
 import type {MessageListProps} from "../types/message.types.ts";
 import {MessageBubble} from "./message-bubble.tsx";
 
-
-export function MessageList({
+export const MessageList = ({
                                         messages,
                                         currentUser,
                                         isLoading,
                                         isError,
-                                    }: MessageListProps) {
+                            }: MessageListProps) => {
     const bottomRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +36,7 @@ export function MessageList({
     if (isError) {
         return (
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", flex: 1 }}>
-                <Typography color="error">Nie udało się załadować wiadomości. Sprawdź połączenie z API.</Typography>
+                <Typography color="error">The message failed to load. Check your API connection!💥 </Typography>
             </Box>
         );
     }
@@ -56,12 +55,12 @@ export function MessageList({
         >
             {messages.length === 0 && (
                 <Typography sx={{ textAlign: "center", color: "text.secondary", mt: 4 }}>
-                    Brak wiadomości. Napisz pierwszą! 💬
+                    No messages. Write the first one!💬
                 </Typography>
             )}
             {messages.map((msg) => (
                 <MessageBubble
-                    key={msg.id}
+                    key={msg._id}
                     message={msg}
                     isOwnMessage={msg.author === currentUser}
                 />

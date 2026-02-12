@@ -1,13 +1,11 @@
 export type Message = {
-    id: string;
+    _id: string;
     message: string;
     author: string;
-    timestamp: string;
+    createdAt: string;
 }
 
-export type MessagesResponse  ={
-    messages: Message[];
-}
+export type MessagesResponse = Message[];
 
 export type SendMessagePayload = {
     message: string;

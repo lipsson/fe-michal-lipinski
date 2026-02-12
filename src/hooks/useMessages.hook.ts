@@ -1,10 +1,11 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {useMemo} from "react";
 import {fetchMessages, sendMessage} from "../api/messages";
-import type {Message, SendMessagePayload} from "../types/message.types.ts";
+import type {SendMessagePayload} from "../types/message.types.ts";
 
 
 const MESSAGES_KEY = ["messages"] as const;
-const POLL_INTERVAL = 3000;
+const POLL_INTERVAL = 30000;
 
 export function useMessages() {
     const queryClient = useQueryClient();
@@ -13,11 +14,14 @@ export function useMessages() {
         queryKey: MESSAGES_KEY,
         queryFn: () => fetchMessages(),
         refetchInterval: POLL_INTERVAL,
-        select: (messages: Message[]) =>
-            [...messages].sort(
-                (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-            ),
     });
+
+    const sortedMessages = useMemo(() => {
+        const data = messagesQuery.data ?? [];
+        return [...data].sort(
+            (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        );
+    }, [messagesQuery.data]);
 
     const sendMutation = useMutation({
         mutationFn: (payload: SendMessagePayload) => sendMessage(payload),
@@ -27,7 +31,7 @@ export function useMessages() {
     });
 
     return {
-        messages: messagesQuery.data ?? [],
+        messages: sortedMessages,
         isLoading: messagesQuery.isLoading,
         isError: messagesQuery.isError,
         error: messagesQuery.error,

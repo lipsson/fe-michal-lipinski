@@ -1,22 +1,8 @@
-import { Box, Typography, Paper } from "@mui/material";
-import type { MessageBubbleProps} from "../types/message.types.ts";
+import {Box, Paper, Typography} from "@mui/material";
+import type {MessageBubbleProps} from "../types/message.types.ts";
+import {decodeHtml, formatTime, stringToColor} from "./utils/utils.ts";
 
-
-function formatTime(timestamp: string): string {
-    const date = new Date(timestamp);
-    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-}
-
-function stringToColor(str: string): string {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const hue = Math.abs(hash) % 360;
-    return `hsl(${hue}, 55%, 55%)`;
-}
-
-export function MessageBubble({ message, isOwnMessage }: MessageBubbleProps) {
+export const MessageBubble = ({message, isOwnMessage}: MessageBubbleProps) => {
     const avatarColor = stringToColor(message.author);
 
     return (
@@ -55,6 +41,8 @@ export function MessageBubble({ message, isOwnMessage }: MessageBubbleProps) {
                 elevation={0}
                 sx={{
                     maxWidth: { xs: "75%", sm: "60%" },
+                    minWidth: 120,
+                    wordBreak: "break-word",
                     px: 2,
                     py: 1,
                     borderRadius: isOwnMessage
@@ -74,7 +62,7 @@ export function MessageBubble({ message, isOwnMessage }: MessageBubbleProps) {
                     </Typography>
                 )}
                 <Typography variant="body2" sx={{ wordBreak: "break-word" }}>
-                    {message.message}
+                    {decodeHtml(message.message)}
                 </Typography>
                 <Typography
                     variant="caption"
@@ -86,7 +74,7 @@ export function MessageBubble({ message, isOwnMessage }: MessageBubbleProps) {
                         fontSize: "0.65rem",
                     }}
                 >
-                    {formatTime(message.timestamp)}
+                    {formatTime(message.createdAt)}
                 </Typography>
             </Paper>
         </Box>
