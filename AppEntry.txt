@@ -1,0 +1,39 @@
+.
+├── AppEntry.txt
+├── README.md
+├── eslint.config.js
+├── index.html
+├── package.json
+├── pnpm-lock.yaml
+├── public
+│   └── vite.svg
+├── src
+│   ├── App.tsx
+│   ├── api
+│   │   ├── httpClient.ts
+│   │   └── messages.ts
+│   ├── components
+│   │   ├── container
+│   │   │   └── chat-container.tsx
+│   │   ├── form
+│   │   │   ├── header.tsx
+│   │   │   ├── message-input.tsx
+│   │   │   └── user-dialog.tsx
+│   │   ├── message-bubble.tsx
+│   │   ├── message-list.tsx
+│   │   └── utils
+│   │       └── utils.ts
+│   ├── hooks
+│   │   └── useMessages.hook.ts
+│   ├── main.tsx
+│   ├── theme
+│   │   └── theme.ts
+│   └── types
+│       └── message.types.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite-env.d.ts
+└── vite.config.ts
+
+11 directories, 26 files

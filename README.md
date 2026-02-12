@@ -1,73 +1,106 @@
-# React + TypeScript + Vite
+# Modern React Application - Chat App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a frontend web application built with **React 19**, **TypeScript**, and **Vite**. It utilizes **Material UI** for component styling and **TanStack Query** for efficient server state management.
 
-Currently, two official plugins are available:
+## 🛠 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Core:** React 19, TypeScript 5.9
+- **Build Tool:** Vite 7
+- **UI Framework:** Material UI (MUI) v7 + Emotion
+- **Data Fetching:** TanStack Query (React Query) & Axios
+- **Code Quality:** ESLint 9 (Flat Config) & Prettier
+- **Package Manager:** pnpm
 
-## React Compiler
+## 🚀 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+Ensure you have **Node.js** installed on your machine.
+This project relies on **pnpm** for dependency management.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository.
+2. Install dependencies using pnpm:
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Running Development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+To start the development server with Hot Module Replacement (HMR):
+```bash
+pnpm dev
+```
+The application will typically be available at `http://localhost:5173`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ⚙️ Configuration
+
+### API Proxy
+The Vite configuration includes a proxy for `/api` requests to avoid CORS issues during development.
+By default, it proxies requests to `http://localhost:3000`.
+
+You can configure the target backend port using an environment variable:
+- `VITE_API_PORT`: Overrides the default backend port (3000).
+
+## 💅 Linting & Formatting
+
+To ensure code consistency, this project uses **ESLint** combined with **Prettier**.
+
+- **Linting:** Checks for code errors and best practices.
+- **Formatting:** Handles code style (indentation, quotes, etc.).
+
+If you have integrated Prettier with your IDE (e.g., WebStorm or VS Code), formatting should happen automatically or on save.
+
+## 📦 Building for Production
+
+To create a production-ready build:
+```bash
+bash pnpm build
+```
+The build artifacts will be stored in the `dist/` directory.
+
+## 📂 Project Structure
+
+```text
+.
+├── AppEntry.txt
+├── README.md
+├── eslint.config.js
+├── index.html
+├── package.json
+├── pnpm-lock.yaml
+├── public
+│   └── vite.svg
+├── src
+│   ├── App.tsx
+│   ├── api
+│   │   ├── httpClient.ts
+│   │   └── messages.ts
+│   ├── components
+│   │   ├── container
+│   │   │   └── chat-container.tsx
+│   │   ├── form
+│   │   │   ├── header.tsx
+│   │   │   ├── message-input.tsx
+│   │   │   └── user-dialog.tsx
+│   │   ├── message-bubble.tsx
+│   │   ├── message-list.tsx
+│   │   └── utils
+│   │       └── utils.ts
+│   ├── hooks
+│   │   └── useMessages.hook.ts
+│   ├── main.tsx
+│   ├── theme
+│   │   └── theme.ts
+│   └── types
+│       └── message.types.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite-env.d.ts
+└── vite.config.ts
+
+11 directories, 26 files
+
 ```
