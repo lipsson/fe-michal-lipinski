@@ -1,7 +1,7 @@
 import SendIcon from '@mui/icons-material/Send';
-import {Box, IconButton, TextField} from '@mui/material';
-import {type KeyboardEvent, type SyntheticEvent, useState} from 'react';
-import type {MessageInputProps} from '../../types/message.types.ts';
+import { Box, IconButton, TextField } from '@mui/material';
+import { type KeyboardEvent, type SyntheticEvent, useState } from 'react';
+import type { MessageInputProps } from '../../types/message.types.ts';
 
 export const MessageInput = ({ onSend, disabled }: MessageInputProps) => {
   const [text, setText] = useState('');
