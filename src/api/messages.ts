@@ -1,5 +1,5 @@
-import type {Message, MessagesResponse, SendMessagePayload} from '../types/message.types.ts';
-import {httpClient} from './httpClient.ts';
+import type { Message, MessagesResponse, SendMessagePayload } from '../types/message.types.ts';
+import { httpClient } from './http-client.ts';
 
 export async function fetchMessages(after?: string, limit = 50): Promise<Message[]> {
   const params: Record<string, string | number> = { limit };

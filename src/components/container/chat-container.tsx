@@ -1,10 +1,10 @@
-import {Box, Paper} from '@mui/material';
-import {useState} from 'react';
-import {useMessages} from '../../hooks/useMessages.hook.ts';
-import {Header} from '../form/header.tsx';
-import {MessageInput} from '../form/message-input.tsx';
-import {UserDialog} from '../form/user-dialog.tsx';
-import {MessageList} from '../message-list.tsx';
+import { Box, Paper } from '@mui/material';
+import { useState } from 'react';
+import { useMessages } from '../../hooks/useMessages.hook.ts';
+import { Header } from '../form/header.tsx';
+import { MessageInput } from '../form/message-input.tsx';
+import { UserDialog } from '../form/user-dialog.tsx';
+import { MessageList } from '../message-list.tsx';
 
 const USERNAME_KEY = '';
 
